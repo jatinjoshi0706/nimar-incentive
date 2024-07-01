@@ -1,0 +1,261 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800);
+
+/* index.css */
+
+/* General Styles */
+body {
+  overflow-x: hidden;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  line-height: 1;
+  color: #fff;
+  background: #F4A261;
+}
+
+
+.container {
+  width: 65%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2,
+h4 {
+  color: #1F1A17;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* File Input Styles */
+.file-input-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.file-input-container h4 {
+  margin-bottom: 5px;
+}
+
+input[type="file"] {
+  border: 1px solid #CCCCCC;
+  padding: 5px;
+  font-size: 1em;
+}
+
+/* Form Styles */
+form {
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Qualifying Condition Styles */
+.qcContainer {
+  background-color: #EFEFEF;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+#qcInputs {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+#carSelection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#carSelection label {
+  margin-right: 15px;
+}
+
+#qcInputs div {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+/* New DSE Section Styles */
+.newDSEContainer {
+  background-color: #EFEFEF;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.newDSE-section {
+  margin-bottom: 10px;
+}
+
+/* Incentive Sections Styles */
+.DSECarIncentive,
+.SuperCar-container {
+  background-color: #EFEFEF;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+#perModelPairContainer,
+#specialCarPairContainer,
+#Exchange-pairs-container,
+#Complaint-pairs-container {
+  margin: 20px 0;
+  padding: 10px auto;
+  background-color: #EFEFEF;
+  border: 2px solid #989898;
+  border-radius: 5px;
+
+
+}
+
+.DSECarIncentive,
+.SuperCar-container,
+.CDI-section,
+.discountIncentive-section,
+.MGA-section,
+.EW-section,
+.MSR-section,
+.ccp-section,
+.MSSF-section,
+.inputFile-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #EFEFEF;
+  border: 2px solid #989898;
+  border-radius: 5px;
+
+}
+
+.pair-container,
+.perModelPairContainer,
+.specialCarPairContainer,
+.Exchange-pair-container,
+.Complaint-pair-container,
+.SuperCarSelection-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #EFEFEF;
+}
+
+input{
+  color: #3f3f3f;
+}
+
+select,
+input[type="number"] {
+  
+  padding: 5px;
+  font-size: 1em;
+  margin-left: 10px;
+}
+input[type="file"] {
+  margin: auto;
+  padding: 5px;
+  font-size: 1em;
+  margin-left: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #1F1A17;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+button:hover {
+  background-color: #333333;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+
+/* Dynamic Inputs Container Styles */
+#cdiInputs,
+#DiscountInputsContainer,
+#MGAinputsContainer,
+#EWinputsContainer,
+#MSRinputsContainer,
+#CCPinputsContainer,
+#MSSFinputsContainer {
+  margin-top: 20px;
+}
+
+label {
+  color: #1F1A17;
+}
+
+select {
+  color: #1F1A17;
+}
+
+
+/* style for table */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #fff;
+  color: black;
+  margin: 10px 2px;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  word-wrap: break-word;
+  /* Wrap long words */
+  overflow-wrap: break-word;
+  /* Break words to prevent overflow */
+  max-width: 200px;
+  /* Set max width to prevent cell from growing indefinitely */
+}

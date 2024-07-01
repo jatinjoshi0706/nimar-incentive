@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Incentive Calculator</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+  &nbsp;&nbsp;&nbsp;
+  <div class="container" style="text-align: center;">
+    <h1 style="text-align: center;color: #1F1A17;">Maruti</h1>
+    <h1 style="text-align: center;color: #1F1A17;"> Incentive Calculator </h1>
+
+    <div class="inputFile-section">
+      <h4 style="text-align: center;color: #1F1A17;">Choose Your file to upload.</h4>
+      <div class="file-input-container-1">
+        <h4 style="text-align: center;color: #1F1A17;">Sales Excel</h4>
+        <input class="balloon" type="file" name="file" id="file-input-salesExcel" />
+      </div>
+      <div class="file-input-container-2">
+        <h4 style="text-align: center;color: #1F1A17;">CDI Score excel</h4>
+        <input class="balloon" type="file" name="file" id="file-input-CDIScore" />
+      </div>
+    </div>
+    <form id="myForm">
+      <!-- check qualifing Condition -->
+      <div class="qcContainer">
+        <h2 style="color: #1F1A17;">Qualifying Condition</h2>
+        <div id="qcInputs" style="display: flex; padding: 20px; flex-direction: column; margin-bottom: 20px;">
+          <div style=" display: flex;   justify-content: space-evenly;">
+            <label for="carSelection" style="color: #1F1A17;">Select Focus Model Cars:</label>
+            <div id="carSelection">
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="ALTO"> ALTO</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="K-10"> K-10</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="S-Presso"> S-Presso</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="CELERIO"> CELERIO</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="WagonR"> WagonR</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="BREZZA"> BREZZA</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="DZIRE"> DZIRE</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="EECO"> EECO</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="Ertiga"> Ertiga</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="SWIFT"> SWIFT</label>
+            </div>
+          </div>
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="numCars" style="color: #1F1A17;">Number of Cars:</label>
+            <input type="number" id="numCars" name="numCars">
+          </div>
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="autocard" style="color: #1F1A17;">AutoCard:</label>
+            <input type="checkbox" id="autocard" name="autocard" value="yes">
+          </div>
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="ew" style="color: #1F1A17;">EW:</label>
+            <input type="checkbox" id="ew" name="ew" value="yes">
+          </div>
+        </div>
+      </div>
+
+      <div class="newDSEContainer">
+        <h2 class="newDSE-section" style="color: #1F1A17;">New DSE Percar Incentive :</h2>
+        <br>
+        <div style=" display: flex;  justify-content: space-evenly;">
+          <label for="newDSEInput" style="color: #1F1A17;">Number of Cars:</label>
+          <input type="number" id="newDSEInput" name="newDSEInput">
+        </div>
+      </div>
+
+      <div class="DSECarIncentive">
+        <label for="sectionSelect" style="color: #1F1A17;">Select Section:</label>
+        <select id="sectionSelect">
+          <option value="perCarIncentive">Per Car Incentive</option>
+          <option value="perModelIncentive">Per Model Incentive</option>
+        </select>
+        <div id="perCarIncentiveSection">
+          <h2 style="color: #1F1A17;">Per Car Incentive</h2>
+          <div id="pairs-container" style="color: #1F1A17; margin-top: 20px;">
+            <div class="pair-container">
+              <label for="cars" style="color: #1F1A17;">Number of Cars:</label>
+              <input type="number" name="cars">
+              <label for="incentive" style="color: #1F1A17;">Incentive:</label>
+              <input type="number" name="incentive" step="0.01">
+            </div>
+            <button type="button" id="addPairButton">Add Pair</button>
+          </div>
+        </div>
+
+        <div id="perModelIncentiveSection" class="hidden">
+          <h2 style="color: #1F1A17;">Per Model Incentive</h2>
+          <div id="perModelPairContainer">
+            <div class="perModelPairContainer">
+              <label for="carModel1">Car Model:</label>
+              <select id="carModel1">
+                <option value="ALTO">ALTO</option>
+                <option value="K-10">K-10</option>
+                <option value="S-Presso">S-Presso</option>
+                <option value="CELERIO">CELERIO</option>
+                <option value="WagonR">WagonR</option>
+                <option value="BREZZA">BREZZA</option>
+                <option value="DZIRE">DZIRE</option>
+                <option value="EECO">EECO</option>
+                <option value="Ertiga">Ertiga</option>
+                <option value="SWIFT">SWIFT</option>
+              </select>
+              <label for="incentive1">Incentive:</label>
+              <input type="number" id="incentive1" placeholder="Enter incentive amount">
+            </div>
+          </div>
+          <button type="button" id="addPerModelPairButton">Add Another Model Incentive Pair</button>
+        </div>
+      </div>
+
+      <!-- Special Car Incentive -->
+
+      <div id="specialCarPairContainer">
+        <h2 style="color: #1F1A17;">Special Car Incentive</h2>
+        <div class="specialCarPairContainer">
+          <label for="SCcarModel1">Car Model:</label>
+          <select id="SCcarModel1">
+            <option value="ALTO">ALTO</option>
+            <option value="K-10">K-10</option>
+            <option value="S-Presso">S-Presso</option>
+            <option value="CELERIO">CELERIO</option>
+            <option value="WagonR">WagonR</option>
+            <option value="BREZZA">BREZZA</option>
+            <option value="DZIRE">DZIRE</option>
+            <option value="EECO">EECO</option>
+            <option value="Ertiga">Ertiga</option>
+            <option value="SWIFT">SWIFT</option>
+          </select>
+          <label for="SCincentive1">Incentive:</label>
+          <input type="number" id="SCincentive1" placeholder="Enter incentive amount">
+        </div>
+        <button type="button" id="addSpecialCarPairButton">Add Special Car Incentive Pair</button>
+      </div>
+
+
+
+
+      <div id="Exchange-pairs-container" style="color: #1F1A17; margin-top: 20px;">
+        <h2 style="color: #1F1A17;">Exchange Status Incentive</h2>
+        <div class="Exchange-pair-container">
+          <label for="exchange" style="color: #1F1A17;">Exchange No:</label>
+          <input type="number" name="exchange">
+          <label for="incentive" style="color: #1F1A17;">Incentive:</label>
+          <input type="number" name="incentive" step="0.01">
+        </div>
+        <button type="button" id="addExchangePairButton">Add Exchange Pair</button>
+      </div>
+
+
+
+      <div id="Complaint-pairs-container" style="color: #1F1A17; margin-top: 20px;">
+        <h2 style="color: #1F1A17;">Complaint Status Deduction</h2>
+        <div class="Complaint-pair-container">
+          <label for="complaint" style="color: #1F1A17;">Complaint No:</label>
+          <input type="number" name="complaint">
+          <label for="incentive" style="color: #1F1A17;">Incentive:</label>
+          <input type="number" name="incentive" step="0.01">
+        </div>
+        <button type="button" id="addComplaintPairButton">Add Complaint Pair</button>
+      </div>
+
+
+
+      <div class="SuperCar-container">
+        <h2 style="color: #1F1A17;">Super Car Incentive</h2>
+        <div id="SuperCar" style="display: flex; padding: 20px; flex-direction: column; margin-bottom: 20px;">
+          <div class="SuperCarSelection-container" style=" display: flex;   justify-content: space-evenly;">
+            <label for="SuperCarSelection" style="color: #1F1A17;">Select Super Car Incentive Criteria Check:</label>
+            <div id="SuperCarSelection">
+              <label style="color: #1F1A17;"><input type="checkbox" name="superCarCheck"
+                  value="zerodiscountOnVehicle">Zero Discount on Vehicle</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="superCarCheck" value="MGASaleGT30K">MGA Sale
+                is Greater Than 30,000</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="superCarCheck" value="royalPlatinum">EW Sale
+                Of 5 Years (Royal Platinum)</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="superCarCheck"
+                  value="insurance">Insurance</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="superCarCheck" value="CCP"> CCP (2
+                Years)</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="superCarCheck" value="MSR"> MSR</label>
+            </div>
+            <label for="SuperCarIncentive" style="color: #1F1A17;">Enter Super Car Incentive :</label>
+            <input type="number" name="SuperCarIncentive" id="SuperCarIncentive">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="CDI-section">
+        <h2 style="color: #1F1A17;">CDI scores</h2>
+        <label for="inputType" style="color: #1F1A17;">Select Input Type:</label>
+        <select id="inputType">
+          <option value="greater">Greater Than</option>
+          <option value="less">Less Than</option>
+          <option value="range">Range</option>
+        </select>
+        <button type="button" id="addInputButton">Add Input</button>
+        <div id="cdiInputs"></div>
+      </div>
+
+
+
+      <div class="discountIncentive-section">
+        <h2 style="color: #1F1A17;">Discount Incentive</h2>
+        <button type="button" id="addDiscountInputButton">Add Discount Slab Input</button>
+        <div id="DiscountInputsContainer"></div>
+      </div>
+
+
+      <div class="MGA-section">
+        <h2 style="color: #1F1A17;">MGA Incentive</h2>
+        <br>
+        <button type="button" id="addMGAInput">Add MGA Input</button>
+        <div id="MGAinputsContainer">
+        </div>
+      </div>
+
+
+
+      <div class="EW-section">
+        <h2 style="color: #1F1A17;">Extended Warranty Incentive</h2>
+        <label for="EWinputType">Select Input Type:</label>
+        <select id="EWinputType">
+          <option value="greater">Greater Than or Equal To</option>
+          <option value="less">Less Than or Equal To</option>
+          <option value="range">Range</option>
+        </select>
+        <button type="button" id="addEWInputButton">Add EW Input</button>
+        <!-- Container for dynamically added inputs -->
+        <div id="EWinputsContainer"></div>
+      </div>
+
+      <div class="MSR-section">
+        <h2 style="color: #1F1A17;">MSR Incentive</h2>
+        <label for="MSRinputType">Select Input Type:</label>
+        <select id="MSRinputType">
+          <option value="greater">Greater Than or Equal To</option>
+          <option value="less">Less Than or Equal To</option>
+          <option value="range">Range</option>
+        </select>
+
+        <button type="button" id="addMSRInputButton">Add MSR Input</button>
+
+        <!-- Container for dynamically added inputs -->
+        <div id="MSRinputsContainer"></div>
+      </div>
+
+      <div class="ccp-section">
+
+        <h2 style="color: #1F1A17;">CCP Incentive</h2>
+        <label for="CCPinputType">Select Input Type:</label>
+        <select id="CCPinputType">
+          <option value="greater">Greater Than or Equal To</option>
+          <option value="less">Less Than or Equal To</option>
+          <option value="range">Range</option>
+        </select>
+
+        <button type="button" id="addCCPInputButton">Add CCP Input</button>
+
+        <!-- Container for dynamically added inputs -->
+        <div id="CCPinputsContainer"></div>
+      </div>
+
+      <div class="MSSF-section">
+
+        <h2 style="color: #1F1A17;">MSSF Incentive</h2>
+        <label for="MSSFinputType">Select Input Type:</label>
+        <select id="MSSFinputType">
+          <option value="greater">Greater Than or Equal To</option>
+          <option value="less">Less Than or Equal To</option>
+          <option value="range">Range</option>
+        </select>
+
+        <button type="button" id="addMSSFInputButton">Add MSSF Input</button>
+
+        <!-- Container for dynamically added inputs  -->
+        <div id="MSSFinputsContainer"></div>
+      </div>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+    <!-- input for Master Excel -->
+    
+  </div>
+  <table class="oldDSE-table"></table>
+    <table class="new-table"></table>
+  <script src="preload.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</body>
+
+</html>

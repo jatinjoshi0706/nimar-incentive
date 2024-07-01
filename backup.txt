@@ -1,0 +1,161 @@
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+
+        const finalObj = {};
+        const formData = new FormData(form);
+        const qcData = {
+            numOfCars: formData.get('numCars'),
+            focusModel: formData.getAll('carsFM'),
+            autoCard: formData.get('autocard'),
+            EW: formData.get('ew')
+        };
+
+
+        const cdiIncentives = [...document.querySelectorAll('.cdiInput')].map(div => {
+            let type;
+            const cdiMinElement = div.querySelector('[name="cdiMin"]');
+            const cdiMaxElement = div.querySelector('[name="cdiMax"]');
+            const cdiValueElement = div.querySelector('[name="cdiValue"]');
+
+            if (cdiMinElement && cdiMaxElement) {
+                type = 'range';
+            } else if (cdiValueElement) {
+                const labelText = cdiValueElement.previousElementSibling.textContent;
+                type = labelText.includes('Greater') ? 'greater' : 'less';
+            } else {
+                type = null;
+            }
+
+
+
+            const cdiValue = parseFloat(div.querySelector('[name="cdiValue"]')?.value) || null;
+            const cdiMin = parseFloat(div.querySelector('[name="cdiMin"]')?.value) || null;
+            const cdiMax = parseFloat(div.querySelector('[name="cdiMax"]')?.value) || null;
+            const incentive = parseFloat(div.querySelector('[name="incentive"]')?.value) || null;
+
+            return { type, cdiValue, cdiMin, cdiMax, incentive };
+        });
+
+
+        const pairContainers = document.getElementsByClassName('pair-container');
+        for (let i = 0; i < pairContainers.length; i++) {
+            const pairContainer = pairContainers[i];
+            const carsInput = pairContainer.querySelector('input[name="cars"]');
+            const incentiveInput = pairContainer.querySelector('input[name="incentive"]');
+
+
+            const pair = {
+                cars: carsInput.value,
+                incentive: incentiveInput.value
+            };
+
+            carPairs.push(pair);
+        }
+
+
+
+        const MGinputsContainer = document.getElementById('MGAinputsContainer');
+        MGinputsContainer.querySelectorAll('.range-input').forEach(inputDiv => {
+            const rangeType = inputDiv.dataset.rangeType;
+            if (rangeType === 'lessThan') {
+                const value = parseFloat(inputDiv.querySelector('[name="lessThanValue"]').value);
+                const incentive = parseFloat(inputDiv.querySelector('[name="lessThanIncentive"]').value);
+                addRange('lessThan', value, null, incentive);
+            } else if (rangeType === 'greaterThan') {
+                const value = parseFloat(inputDiv.querySelector('[name="greaterThanValue"]').value);
+                const incentive = parseFloat(inputDiv.querySelector('[name="greaterThanIncentive"]').value);
+                addRange('greaterThan', value, null, incentive);
+            } else if (rangeType === 'between') {
+                const fromValue = parseFloat(inputDiv.querySelector('[name="betweenValue1"]').value);
+                const toValue = parseFloat(inputDiv.querySelector('[name="betweenValue2"]').value);
+                const incentive = parseFloat(inputDiv.querySelector('[name="betweenIncentive"]').value);
+                addRange('between', fromValue, toValue, incentive);
+            }
+        });
+
+
+
+        const EWinputsContainer = document.getElementById('EWinputsContainer');
+        EWinputsContainer.querySelectorAll('.inputGroup').forEach(inputDiv => {
+            const incentive = {};
+            if (inputDiv.querySelector('[name="percentageGreaterThan"]')) {
+                incentive.type = 'greater';
+                incentive.value = parseFloat(inputDiv.querySelector('[name="percentageGreaterThan"]').value);
+            } else if (inputDiv.querySelector('[name="percentageLessThan"]')) {
+                incentive.type = 'less';
+                incentive.value = parseFloat(inputDiv.querySelector('[name="percentageLessThan"]').value);
+            } else if (inputDiv.querySelector('[name="percentageMin"]') && inputDiv.querySelector('[name="percentageMax"]')) {
+                incentive.type = 'range';
+                incentive.min = parseFloat(inputDiv.querySelector('[name="percentageMin"]').value);
+                incentive.max = parseFloat(inputDiv.querySelector('[name="percentageMax"]').value);
+            }
+            incentive.incentive = parseFloat(inputDiv.querySelector('[name="incentive"]').value);
+            EWInputs.push(incentive);
+        });
+
+
+
+        const CCPinputsContainer = document.getElementById('CCPinputsContainer');
+        CCPinputsContainer.querySelectorAll('.CCPinputGroup').forEach(inputDiv => {
+            const incentive = {};
+            if (inputDiv.querySelector('[name="percentageGreaterThan"]')) {
+                incentive.type = 'greater';
+                incentive.value = parseFloat(inputDiv.querySelector('[name="percentageGreaterThan"]').value);
+            } else if (inputDiv.querySelector('[name="percentageLessThan"]')) {
+                incentive.type = 'less';
+                incentive.value = parseFloat(inputDiv.querySelector('[name="percentageLessThan"]').value);
+            } else if (inputDiv.querySelector('[name="percentageMin"]') && inputDiv.querySelector('[name="percentageMax"]')) {
+                incentive.type = 'range';
+                incentive.min = parseFloat(inputDiv.querySelector('[name="percentageMin"]').value);
+                incentive.max = parseFloat(inputDiv.querySelector('[name="percentageMax"]').value);
+            }
+            incentive.incentive = parseFloat(inputDiv.querySelector('[name="incentive"]').value);
+            CCPInputs.push(incentive);
+        });
+
+
+
+
+        const MSSFinputsContainer = document.getElementById('MSSFinputsContainer');
+        MSSFinputsContainer.querySelectorAll('.MSSFinputGroup').forEach(inputDiv => {
+            const incentive = {};
+            if (inputDiv.querySelector('[name="percentageGreaterThan"]')) {
+                incentive.type = 'greater';
+                incentive.value = parseFloat(inputDiv.querySelector('[name="percentageGreaterThan"]').value);
+            } else if (inputDiv.querySelector('[name="percentageLessThan"]')) {
+                incentive.type = 'less';
+                incentive.value = parseFloat(inputDiv.querySelector('[name="percentageLessThan"]').value);
+            } else if (inputDiv.querySelector('[name="percentageMin"]') && inputDiv.querySelector('[name="percentageMax"]')) {
+                incentive.type = 'range';
+                incentive.min = parseFloat(inputDiv.querySelector('[name="percentageMin"]').value);
+                incentive.max = parseFloat(inputDiv.querySelector('[name="percentageMax"]').value);
+            }
+            incentive.incentive = parseFloat(inputDiv.querySelector('[name="incentive"]').value);
+            MSSFInputs.push(incentive);
+        });
+
+
+
+
+
+
+
+        finalObj["QC"] = qcData;
+        finalObj["CDI"] = cdiIncentives;
+        finalObj["carIncentive"] = carPairs;
+        finalObj["MGAIncentive"] = MGAranges;
+        finalObj["Extended Warranty"] = EWInputs;
+        finalObj["CCP"] = CCPInputs;
+        finalObj["MSSF"] = MSSFInputs;
+        console.log('FinalObj', finalObj);
+
+        ipcRenderer.send('form-submit', finalObj);
+
+    });
+
+
+
+    ipcRenderer.on("data-error", (event, errorMessage) => {
+        console.error(errorMessage);
+    });

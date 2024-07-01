@@ -1,0 +1,74 @@
+1#  MGA compareCheck
+
+
+ function compareMGA() {
+            const mgaValue = parseFloat(document.getElementById('mgaValue').value);
+            let result = "No matching range found";
+
+            for (const range of ranges) {
+                if (range.type === 'lessThan' && mgaValue < range.value) {
+                    result = `Percentage Incentive: ${range.incentive}%`;
+                    break;
+                } else if (range.type === 'greaterThan' && mgaValue > range.value) {
+                    result = `Percentage Incentive: ${range.incentive}%`;
+                    break;
+                } else if (range.type === 'between' && mgaValue >= range.from && mgaValue <= range.to) {
+                    result = `Percentage Incentive: ${range.incentive}%`;
+                    break;
+                }
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+
+
+2#  PerCar Incentive compareCheck
+
+
+function calculateIncentive() {
+            const numCars = parseInt(document.getElementById('numCars').value);
+            let incentive = 0;
+
+           
+
+            // Handle the edge case where the number of cars exceeds the highest pair value
+            if (numCars > pairs[pairs.length - 1].cars) {
+                incentive = pairs[pairs.length - 1].incentive;
+            } else {
+                for (let i = 0; i < pairs.length; i++) {
+                    if (numCars <= pairs[i].cars) {
+                        incentive = pairs[i].incentive;
+                        break;
+                    }
+                }
+            }
+
+            document.getElementById('calculatedIncentive').innerText = Incentive: ${incentive};
+        }
+
+
+
+3# CDI compareCheck  
+
+
+const getIncentive = (cdi, incentives) => {
+    for (const incentive of incentives) {
+        if (
+            (incentive.type === 'greater' && cdi > incentive.cdiValue) ||
+            (incentive.type === 'less' && cdi < incentive.cdiValue) ||
+            (incentive.type === 'range' && cdi >= incentive.cdiMin && cdi <= incentive.cdiMax)
+        ) {
+            return incentive.incentive;
+        }
+    }
+    return null; // No matching incentive found
+};
+
+const cdiIncentives = [
+    { type: 'greater', cdiValue: 5, cdiMin: null, cdiMax: null, incentive: 10 },
+    { type: 'less', cdiValue: 3, cdiMin: null, cdiMax: null, incentive: 5 },
+    { type: 'range', cdiValue: null, cdiMin: 2, cdiMax: 6, incentive: 7 }
+];
+const cdiValueToCheck = 4;
+const incentive = getIncentive(cdiValueToCheck, cdiIncentives);
+console.log('Incentive for CDI Value:', incentive);
