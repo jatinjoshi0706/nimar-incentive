@@ -11,15 +11,25 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    title: 'Nimar Motors Khargone',
+    // width: 1290,
+    // height: 1080,
+    icon: path.join(__dirname, './assets/NimarMotor.png'),
+    autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: true,
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, "preload.js"),
     },
   });
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  ipcMain.on('reset-application', () => {
+    mainWindow.reload();
+  });
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.maximize()
+  })
+  mainWindow.loadFile(path.join(__dirname, "index.html"));
+  // mainWindow.webContents.openDevTools();
 };
 
 //Separate Calculation Functions
@@ -46,14 +56,13 @@ let employeeStatusDataSheet = [];
 let qualifiedRM = [];
 let nonQualifiedRM = [];
 let newRm = [];
+let newDSEIncentiveDataSheet = [];
 
 
 
 const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
   console.log("checkQualifingCondition");
-  console.log(salesExcelDataSheet)
   salesExcelDataSheet.forEach((item) => {
-
     let numberCheck = 0;
     let Discount = 0;
     let ComplaintCheck = 0;
@@ -91,8 +100,6 @@ const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
       }
     });
 
-
-
     obj = {
       "DSE ID": DSE_NoOfSoldCarExcelDataArr[0]['DSE ID'],
       "DSE Name": DSE_NoOfSoldCarExcelDataArr[0]['DSE Name'],
@@ -101,18 +108,11 @@ const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
       "Grand Total": 0
 
     }
-    console.log("obj")
-    console.log(obj)
-    console.log("empStatus")
-    console.log(empStatus)
-
     if (empStatus) {
       DSE_NoOfSoldCarExcelDataArr.forEach((sold) => {
 
         Discount = Discount + parseInt(sold["FINAL DISCOUNT"]);
-
         carObj[sold["Model Name"]]++;
-
         if (parseInt(sold["CCP PLUS"]) > 0) {
           CCPcheck++;
         }
@@ -131,12 +131,10 @@ const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
         if (sold["Autocard"] == 'YES' || sold["Autocard"] == 'yes') {
           MSRcheck++;
         }
-
         TotalNumberCheck++;
 
         if (formData.QC.focusModel.includes(sold["Model Name"])) {
           numberCheck++;
-          // carObj[sold["Model Name"]]++;
         }
         if (formData.QC.autoCard == "yes") {
           if (sold["Autocard"] == "YES") {
@@ -252,21 +250,43 @@ ipcMain.on('form-submit', (event, formData) => {
   qualifiedRM = ExchangeFunc(qualifiedRM, formData);
   qualifiedRM = ComplaintFunc(qualifiedRM, formData);
   newDSEIncentiveDataSheet = NewDSEincentiveCalculation(newRm, formData)
-  // qualifiedRM = MGAfunc(qualifiedRM, MGAdata, formData);
-
+  qualifiedRM = MGAfunc(qualifiedRM, MGAdata, formData);
   console.log("final qualifiedRM ::");
   console.log(qualifiedRM);
+  const finalExcelobjOldDSE = [];
 
-  event.reply("dataForExcel", qualifiedRM);
+  qualifiedRM.forEach((item) => {
+    const grandTotal = item["Total Incentive"] + item["SpecialCar Incentive"] + item["CDI Incentive"] + item["Super Car Incentive"] + item["EW Incentive"] + item["CCP Incentive"] + item["MSSF Incentive"] + item["MSR Incentive"] + item["Discount Incentive"] + item["Exchange Incentive"] + item["Complaint Deduction"];
+    obj = {
+      "DSE ID": item['DSE ID'],
+      "DSE Name": item['DSE Name'],
+      "BM AND TL NAME": item['BM AND TL NAME'],
+      "Focus Model Qualification": item['Focus Model Qualification'],
+      "Grand Total ": grandTotal,
+    }
+    finalExcelobjOldDSE.push(obj);
+  })
+
+  
+  event.reply("dataForExcel", finalExcelobjOldDSE);
   event.reply("newDSEIncentiveDataSheet", newDSEIncentiveDataSheet);
   const oldDSE = "oldDSE";
   const newDSE = "newDSE";
-  creatExcel(qualifiedRM,oldDSE);
-  creatExcel(qualifiedRM,newDSE);
+  creatExcel(finalExcelobjOldDSE, oldDSE);
+  creatExcel(newDSEIncentiveDataSheet, newDSE);
+
+  MGAdata = [];
+  CDIdata = [];
+  salesExcelDataSheet = [];
+  employeeStatusDataSheet = [];
+  newDSEIncentiveDataSheet = []
+  qualifiedRM = [];
+  nonQualifiedRM = [];
+  newRm = [];
 });
 
-const creatExcel = (dataForExcelObj,text)=>{
-  
+const creatExcel = (dataForExcelObj, text) => {
+  console.log("text :: ", text);
   const nowDate = new Date();
   const month = nowDate.getMonth() + 1;
   const date = nowDate.getDate();
@@ -310,11 +330,6 @@ ipcMain.on('file-selected-salesExcel', (event, path) => {
       MGAdata.push(MGArow);
     }
   })
-  // console.log("MGA", MGAdata);
-  // const employeeStatusSheetName = workbook.SheetNames[3];
-  // const employeeStatusSheet = workbook.Sheets[employeeStatusSheetName];
-  // employeeStatusDataSheet = XLSX.utils.sheet_to_json(employeeStatusSheet);
-  // console.log("Object inside array employeeStatus", JSON.stringify(employeeStatusDataSheet));
 
   salesSheetData.shift();
   let groupedData = {};
@@ -342,18 +357,13 @@ ipcMain.on('file-selected-salesExcel', (event, path) => {
 
 });
 
-
-
-
 ipcMain.on('file-selected-CDIScore', (event, path) => {
 
   const workbook = XLSX.readFile(path);
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const CDIsheetData = XLSX.utils.sheet_to_json(sheet);
-
   CDIdata = CDIsheetData;
-
   // console.log("Object inside array CDI Score", CDIdata);
 });
 

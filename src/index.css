@@ -226,6 +226,7 @@ select {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
+  overflow-x:auto;
   width: 100%;
   background-color: #fff;
   color: black;

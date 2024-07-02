@@ -252,6 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+
+
     const fileSelectorCDIScore = document.querySelector("#file-input-CDIScore");
     fileSelectorCDIScore.addEventListener("change", (e) => {
         const filePath = e.target.files[0].path;
@@ -790,18 +792,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    function populateTable(data,text) {
-        const table = document.getElementsByClassName(`${text}`);
+    function populateTable(data, className) {
+        const table = document.querySelector(`.${className}`);
         table.innerHTML = "";
-
+        
         const thead = document.createElement("thead");
         const headerRow = document.createElement("tr");
         for (const key in data[0]) {
-
             const th = document.createElement("th");
             th.innerText = key;
             headerRow.appendChild(th);
-
         }
 
         thead.appendChild(headerRow);
@@ -822,7 +822,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ipcRenderer.on("dataForExcel", (event, data) => {
         const text = "oldDSE-table";
-        populateTable(data,text);
+        populateTable(data, text);
     });
 
     ipcRenderer.on("newDSEIncentiveDataSheet", (event, data) => {
