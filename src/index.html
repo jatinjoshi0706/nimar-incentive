@@ -9,9 +9,32 @@
 
 <body>
   &nbsp;&nbsp;&nbsp;
+  <h1 style="text-align: center;color: #1F1A17;">Maruti</h1>
+  <h1 style="text-align: center;color: #1F1A17;"> Incentive Calculator </h1>
+  
+  
+  <div class="errormsg" id="errormsgSales">
+    <h3 class="errorHead" id="errorHeadSales"></h3>
+    <ul class="ErrorList" id="salesError"></ul>
+  </div>
+  
+  <div class="errormsg" id="errormsgMGA">
+    <h3 class="errorHead" id="errorHeadMGA"></h3>
+    <ul class="ErrorList" id="MGAError"></ul>
+  </div>
+  
+  
+  <div class="errormsg" id="errormsgStatus">
+    <h3 class="errorHead" id="errorHeadStatus"></h3>
+    <ul class="ErrorList" id="StatusError"></ul>
+  </div>
+  
+  <div class="errormsg" id="errormsgCDI">
+    <h3 class="errorHead" id="errorHeadCDI"></h3>
+    <ul class="ErrorList" id="CDIError"></ul>
+  </div>
+  
   <div class="container" style="text-align: center;">
-    <h1 style="text-align: center;color: #1F1A17;">Maruti</h1>
-    <h1 style="text-align: center;color: #1F1A17;"> Incentive Calculator </h1>
 
     <div class="inputFile-section">
       <h4 style="text-align: center;color: #1F1A17;">Choose Your file to upload.</h4>
@@ -33,7 +56,7 @@
             <label for="carSelection" style="color: #1F1A17;">Select Focus Model Cars:</label>
             <div id="carSelection">
               <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="ALTO"> ALTO</label>
-              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="K-10"> K-10</label>
+              <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="ALTO K-10">ALTO K-10</label>
               <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="S-Presso"> S-Presso</label>
               <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="CELERIO"> CELERIO</label>
               <label style="color: #1F1A17;"><input type="checkbox" name="carsFM" value="WagonR"> WagonR</label>
@@ -94,7 +117,7 @@
               <label for="carModel1">Car Model:</label>
               <select id="carModel1">
                 <option value="ALTO">ALTO</option>
-                <option value="K-10">K-10</option>
+                <option value="ALTO K-10">ALTO K-10</option>
                 <option value="S-Presso">S-Presso</option>
                 <option value="CELERIO">CELERIO</option>
                 <option value="WagonR">WagonR</option>
@@ -120,7 +143,7 @@
           <label for="SCcarModel1">Car Model:</label>
           <select id="SCcarModel1">
             <option value="ALTO">ALTO</option>
-            <option value="K-10">K-10</option>
+            <option value="ALTO K-10">ALTO K-10</option>
             <option value="S-Presso">S-Presso</option>
             <option value="CELERIO">CELERIO</option>
             <option value="WagonR">WagonR</option>
@@ -282,14 +305,15 @@
         <div id="MSSFinputsContainer"></div>
       </div>
       <br>
+      <button id="resetButton">Reset</button>
       <button type="submit">Submit</button>
       <!-- <button class="reset-button">Reset</button> -->
     </form>
     <!-- input for Master Excel -->
-    
   </div>
+
   <table class="oldDSE-table"></table>
-    <table class="new-table"></table>
+  <table class="new-table"></table>
   <script src="preload.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 </body>

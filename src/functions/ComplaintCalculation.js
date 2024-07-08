@@ -13,7 +13,6 @@ module.exports =  (qualifiedRM, formData) => {
                 element["Complaint Deduction"] = formData.ComplaintInputs[i].incentive;
             }
         }
-
         const lastIncentive = formData.ComplaintInputs[formData.ComplaintInputs.length - 1].incentive;
         if (userComplaintNumber > parseInt(formData.ComplaintInputs[formData.ComplaintInputs.length - 1].ComplaintNumber)) {
             element["Complaint Deduction"] = lastIncentive;

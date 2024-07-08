@@ -22,18 +22,19 @@ module.exports =  (qualifiedRM, formData) => {
 
         element["MSSF Incentive"] = 0;
         let userMSSF = element["MSSF"];
-
-
+        const noOfCarSoldMSSF = element["MSSFCount"];
+// console.log("noOfCarSoldMSSF");
+// console.log(noOfCarSoldMSSF);
         for (let i = 0; i < formData["MSSF"].length; i++) {
             const condition = formData["MSSF"][i];
             if (condition.type === 'less' && userMSSF < condition.value) {
-              element["MSSF Incentive"] = condition.incentive;
+              element["MSSF Incentive"] = noOfCarSoldMSSF*condition.incentive;
               break;
             } else if (condition.type === 'greater' && userMSSF > condition.value) {
-              element["MSSF Incentive"] = condition.incentive;
+              element["MSSF Incentive"] = noOfCarSoldMSSF*condition.incentive;
               break;
             } else if (condition.type === 'range' && userMSSF >= condition.min && userMSSF <= condition.max) {
-              element["MSSF Incentive"] = condition.incentive;
+              element["MSSF Incentive"] = noOfCarSoldMSSF*condition.incentive;
               break;
             }
           }

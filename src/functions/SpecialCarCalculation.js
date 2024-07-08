@@ -15,7 +15,7 @@ module.exports =  (qualifiedRM, formData) => {
         }
     }
     
-    element["SpecialCar Incentive"] =   specialCarIncentive;
+    element["SpecialCar Incentive"] = specialCarIncentive;
     
     });
     

@@ -18,29 +18,30 @@ module.exports =  (qualifiedRM, formData) => {
             return 1; // 'less' conditions come after 'greater' conditions
           }
       });
-  
-   console.log(formData["Extended Warranty"]);
+
+      // console.log(formData["Extended Warranty"]);
 
     qualifiedRM.forEach(element => {
        
         let userEW = element["EW Penetration"];
         element["EW Incentive"] = 0;
-
+        const noOfCarSoldEW = element["EWPCount"];
+      
         for (let i = 0; i < formData["Extended Warranty"].length; i++) {
             const condition = formData["Extended Warranty"][i];
             if (condition.type === 'less' && userEW < condition.value) {
-              element["EW Incentive"] = condition.incentive;
+              element["EW Incentive"] = noOfCarSoldEW*condition.incentive;
               break;
             } else if (condition.type === 'greater' && userEW > condition.value) {
-              element["EW Incentive"] = condition.incentive;
+              element["EW Incentive"] = noOfCarSoldEW*condition.incentive;
               break;
             } else if (condition.type === 'range' && userEW >= condition.min && userEW <= condition.max) {
-              element["EW Incentive"] = condition.incentive;
+              element["EW Incentive"] = noOfCarSoldEW*condition.incentive;
               break;
             }
           }
     
-    
+
     });
     
     return qualifiedRM;

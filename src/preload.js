@@ -248,17 +248,22 @@ document.addEventListener("DOMContentLoaded", function () {
     fileSelectorSalesExcel.addEventListener("change", (e) => {
         const filePath = e.target.files[0].path;
         ipcRenderer.send("file-selected-salesExcel", filePath);
-        console.log(filePath);
+        // console.log(filePath);
 
     });
 
+    const resetButton = document.getElementById('resetButton');
+
+    resetButton.addEventListener('click', () => {
+        ipcRenderer.send('reset-app');
+    });
 
 
     const fileSelectorCDIScore = document.querySelector("#file-input-CDIScore");
     fileSelectorCDIScore.addEventListener("change", (e) => {
         const filePath = e.target.files[0].path;
         ipcRenderer.send("file-selected-CDIScore", filePath);
-        console.log(filePath);
+        // console.log(filePath);
     });
     const form = document.getElementById('myForm');
 
@@ -329,6 +334,10 @@ document.addEventListener("DOMContentLoaded", function () {
         addMSRInputFields(selectedType, MSRContainer);
 
     })
+
+
+
+
 
     // For MSSF input
 
@@ -454,7 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <label for="carModel${pairCount}">Car Model:</label>
                     <select id="carModel${pairCount}">
                         <option value="ALTO">ALTO</option>
-                        <option value="K-10">K-10</option>
+                        <option value="ALTO K-10">ALTO K-10</option>
                         <option value="S-Presso">S-Presso</option>
                         <option value="CELERIO">CELERIO</option>
                         <option value="WagonR">WagonR</option>
@@ -484,7 +493,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <label for="SCcarModel${specialCarPairCount}">Car Model:</label>
                     <select id="SCcarModel${specialCarPairCount}">
                         <option value="ALTO">ALTO</option>
-                        <option value="K-10">K-10</option>
+                        <option value="ALTO K-10">ALTO K-10</option>
                         <option value="S-Presso">S-Presso</option>
                         <option value="CELERIO">CELERIO</option>
                         <option value="WagonR">WagonR</option>
@@ -786,16 +795,149 @@ document.addEventListener("DOMContentLoaded", function () {
         finalObj["SpecialCarIncentive"] = specialCarPairs;
         finalObj["CCP"] = CCPInputs;
         finalObj["MSSF"] = MSSFInputs;
-        console.log('FinalObj', finalObj);
+        // console.log('FinalObj');
+        // console.log(finalObj);
 
         ipcRenderer.send('form-submit', finalObj);
 
+
+
+        // ipcRenderer.on("formateAlertSalesExcel", (event, data) => {
+        //     console.log(data); // Log the actual data received
+
+        //     const errormsg = document.querySelector(".errormsgSales");
+        //     const errorHeadSales = document.querySelector(".errorHeadSales"); 
+        //     const salesError = document.querySelector(".salesError");
+        //     // Display the error message
+        //     errorHeadSales.innerHTML = "<strong>Error in Challan Excel Format<br> Click Reset button before calculating again.</strong>"; 
+
+        //     // Clear previous errors
+        //     salesError.innerHTML = '';
+
+        //     // Add each error to the error list
+        //     data.forEach(attr => {
+        //         const li = document.createElement('li');
+        //         li.innerText = attr;
+        //         salesError.appendChild(li);
+        //     });
+        // });
     });
+
+
+
+    ipcRenderer.on("formateAlertSalesExcel", (event, data) => {
+        // console.log(data); // Log the actual data received
+
+        // <div class="errormsg" id="errormsgSales">
+        //     <h3 class="errorHead" id="errorHeadSales"></h3>
+        //     <ul class="ErrorList" id="salesError"></ul>
+        // </div>
+
+        const errormsgSales = document.querySelector("#errormsgSales");
+        const errorHeadSales = document.querySelector("#errorHeadSales");
+        const salesError = document.querySelector("#salesError");
+
+        errormsgSales.style.display = "block";
+
+        // Display the error message
+        errorHeadSales.innerHTML = "<div><strong>Error in Sales Excel Format</strong></div><br> <div><strong>Click Reset button before calculating again.</strong></div>";
+
+        // Clear previous errors
+        salesError.innerHTML = '';
+
+        // Add each error to the error list
+        data.forEach(attr => {
+            const li = document.createElement('li');
+            li.innerText = attr;
+            salesError.appendChild(li);
+        });
+    });
+
+
+    ipcRenderer.on("formateAlertMGAExcel", (event, data) => {
+        // console.log("data");
+        // console.log(data);
+
+        //   <div class="errormsg" id="errormsgMGA">
+        //      <h3 class="errorHead" id="errorHeadMGA"></h3>
+        //      <ul class="ErrorList" id="MGAError"></ul>
+        //  </div>
+        // console.log(data); // Log the actual data received
+        const errormsg = document.querySelector("#errormsgMGA");
+        const errorHeadMGA = document.querySelector("#errorHeadMGA");
+        const MGAError = document.querySelector("#MGAError");
+        // Display the error message
+        errormsg.style.display = "block";
+        errorHeadMGA.innerHTML = "<div><strong>Error in MGA Excel Format</strong></div><br> <div><strong>Click Reset button before calculating again.</strong></div>";
+
+        // Clear previous errors
+        MGAError.innerHTML = '';
+
+        // Add each error to the error list
+        data.forEach(attr => {
+            const li = document.createElement('li');
+            li.innerText = attr;
+            MGAError.appendChild(li);
+        });
+    });
+
+    ipcRenderer.on("formateAlertStatusExcel", (event, data) => {
+        // console.log("data");
+        // console.log(data);
+        //   <div class="errormsg" id="errormsgStatus">
+        //   <h3 class="errorHead" id="errorHeadStatus"></h3>
+        //   <ul class="ErrorList" id="StatusError"></ul>
+        // </div>
+        // console.log(data); // Log the actual data received
+        const errormsg = document.querySelector("#errormsgStatus");
+        const errorHeadStatus = document.querySelector("#errorHeadStatus");
+        const StatusError = document.querySelector("#StatusError");
+        // Display the error message
+        errormsg.style.display = "block";
+        errorHeadStatus.innerHTML = "<div><strong>Error in DSE Status Excel Format</strong></div><br> <div><strong>Click Reset button before calculating again.</strong></div>";
+
+        // Clear previous errors
+        StatusError.innerHTML = '';
+
+        // Add each error to the error list
+        data.forEach(attr => {
+            const li = document.createElement('li');
+            li.innerText = attr;
+            StatusError.appendChild(li);
+        });
+    });
+
+    ipcRenderer.on("formateAlertCDIExcel", (event, data) => {
+        // console.log("data");
+        // console.log(data);// Log the actual data received
+        //   <div class="errormsg" id="errormsgCDI">
+        //     <h3 class="errorHead" id="errorHeadCDI"></h3>
+        //     <ul class="ErrorList" id="CDIError"></ul>
+        //   </div>
+
+        const errormsg = document.querySelector("#errormsgCDI");
+        const errorHeadStatus = document.querySelector("#errorHeadCDI");
+        const StatusError = document.querySelector("#CDIError");
+        errormsg.style.display = "block";
+        // Display the error message
+        errorHeadStatus.innerHTML = "<div><strong>Error in CDI Score Excel Format</strong></div><br> <div><strong>Click Reset button before calculating again.</strong></div>";
+
+        // Clear previous errors
+        StatusError.innerHTML = '';
+
+        // Add each error to the error list
+        data.forEach(attr => {
+            const li = document.createElement('li');
+            li.innerText = attr;
+            StatusError.appendChild(li);
+        });
+    });
+
 
     function populateTable(data, className) {
         const table = document.querySelector(`.${className}`);
         table.innerHTML = "";
-        
+
         const thead = document.createElement("thead");
         const headerRow = document.createElement("tr");
         for (const key in data[0]) {
@@ -834,7 +976,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     ipcRenderer.on("data-error", (event, errorMessage) => {
-        console.error(errorMessage);
+        // console.error(errorMessage);
     });
 
 
