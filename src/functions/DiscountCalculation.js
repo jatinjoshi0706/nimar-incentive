@@ -17,7 +17,7 @@ module.exports = (qualifiedRM, formData) => {
                     break;
                 }
             } else {
-                if (userValue >= incentive.min && userValue < incentive.max) {
+                if (userValue >= incentive.min && userValue <= incentive.max) {
                     element["Vehicle Incentive % Slabwise"] = incentive.incentive;
                     element["Total Vehicle Incentive Amt. Slabwise"] = (TotalVehicleIncentive * incentive.incentive) / 100;
                     break;

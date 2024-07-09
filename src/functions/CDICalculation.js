@@ -16,7 +16,7 @@ module.exports = (qualifiedRM, CDIdata, formData) => {
                 if (
                     (incentive.type === 'greater' && cdiScore >= incentive.cdiValue) ||
                     (incentive.type === 'less' && cdiScore <= incentive.cdiValue) ||
-                    (incentive.type === 'range' && cdiScore >= incentive.cdiMin && cdiScore <= incentive.cdiMax)
+                    (incentive.type === 'range' && cdiScore >= incentive.cdiMin && cdiScore < incentive.cdiMax)
                 ) {
                     CDIIncentive = incentive.incentive;
                 }

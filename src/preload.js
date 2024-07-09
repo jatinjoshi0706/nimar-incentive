@@ -309,6 +309,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    const removeCDIInputButton = document.getElementById('removeCDIInput');
+    removeCDIInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('cdiInputs');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
+
+    })
+
+
     // For EW Input
 
     const addEWInputButton = document.getElementById('addEWInputButton');
@@ -323,6 +336,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+    const removeEWInputButton = document.getElementById('removeEWInputButton');
+    removeEWInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('EWinputsContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
+
+    })
+
+
+
     // For MSR Input
 
     const addMSRInputButton = document.getElementById('addMSRInputButton');
@@ -332,6 +359,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedType = MSRinputType.value;
         const MSRContainer = document.getElementById("MSRinputsContainer");
         addMSRInputFields(selectedType, MSRContainer);
+
+    })
+
+    const removeMSRInputButton = document.getElementById('removeMSRInputButton');
+    removeMSRInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('MSRinputsContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
 
     })
 
@@ -353,6 +392,19 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 
+    const removeMSSFInputButton = document.getElementById('removeMSSFInputButton');
+    removeMSSFInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('MSSFinputsContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
+
+    })
+
+
 
     // For Car Pair
     const addPairButton = document.getElementById('addPairButton');
@@ -368,7 +420,18 @@ document.addEventListener("DOMContentLoaded", function () {
         <label for="incentive">Incentive:</label>
         <input type="number" name="incentive" step="0.01">
     `;
-        pairContainer.insertBefore(div, pairContainer.lastElementChild);
+    pairContainer.appendChild(div);
+    })
+
+    const removecarPairInputButton = document.getElementById('removePairButton');
+    removecarPairInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('pairs-container');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
 
     })
 
@@ -389,9 +452,18 @@ document.addEventListener("DOMContentLoaded", function () {
         <label for="incentive">Incentive:</label>
         <input type="number" name="incentive" step="0.01">
     `;
-        pairContainer.insertBefore(div, pairContainer.lastElementChild);
-
+    pairContainer.appendChild(div);
     })
+
+    const removeLastExchangePairButton = document.getElementById('removeLastExchangePairButton');
+    removeLastExchangePairButton.addEventListener('click', () => {
+        const pairContainer = document.getElementById('Exchange-pairs-container');
+        const exchangePairContainers = pairContainer.getElementsByClassName('Exchange-pair-container');
+
+        const lastPairContainer = exchangePairContainers[exchangePairContainers.length - 1];
+        pairContainer.removeChild(lastPairContainer);
+
+    });
 
 
 
@@ -411,9 +483,21 @@ document.addEventListener("DOMContentLoaded", function () {
         <label for="incentive">Incentive:</label>
         <input type="number" name="incentive" step="0.01">
     `;
-        pairContainer.insertBefore(div, pairContainer.lastElementChild);
-
+    pairContainer.appendChild(div);
     })
+
+
+
+
+    const removeLastComplaintPairButton = document.getElementById('removeLastComplaintPairButton');
+    removeLastComplaintPairButton.addEventListener('click', () => {
+        const pairContainer = document.getElementById('Complaint-pairs-container');
+        const complaintPairContainers = pairContainer.getElementsByClassName('Complaint-pair-container');
+
+        const lastPairContainer = complaintPairContainers[complaintPairContainers.length - 1];
+        pairContainer.removeChild(lastPairContainer);
+
+    });
 
 
     //MGA input
@@ -427,6 +511,18 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 
+    const removeMGAInputButton = document.getElementById('removeMGAInput');
+    removeMGAInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('MGAinputsContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
+
+    })
+
     //    For CCP input
 
     const addCCPInputButton = document.getElementById('addCCPInputButton');
@@ -435,6 +531,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedType = CCPinputType.value;
         const CCPContainer = document.getElementById("CCPinputsContainer");
         addCCPInputFields(selectedType, CCPContainer);
+
+    })
+
+
+    const removeCCPInputButton = document.getElementById('removeCCPInputButton');
+    removeCCPInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('CCPinputsContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
 
     })
 
@@ -448,6 +557,18 @@ document.addEventListener("DOMContentLoaded", function () {
         addDiscountInputFields(DiscountContainer);
     })
 
+
+    const removeDiscountInputButton = document.getElementById('removeDiscountInput');
+    removeDiscountInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('DiscountInputsContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            container.removeChild(lastChild);
+        }
+
+
+    })
 
 
     // For Per Model Input
@@ -482,6 +603,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    const removemodelcarPairInputButton = document.getElementById('removePerModelPairButton');
+    removemodelcarPairInputButton.addEventListener('click', () => {
+
+        var container = document.getElementById('perModelPairContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            pairCount--;
+            container.removeChild(lastChild);
+        }
+
+
+    })
+
+
 
     const addSpecialCarPairButton = document.getElementById('addSpecialCarPairButton')
     addSpecialCarPairButton.addEventListener('click', function () {
@@ -510,6 +645,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         specialCarPairContainer.insertAdjacentHTML('beforeend', newPairHTML);
     });
+
+
+    const removeSpecialCarPairButton = document.getElementById('removeSpecialCarPairButton');
+    removeSpecialCarPairButton.addEventListener('click', () => {
+
+        var container = document.getElementById('specialCarPairContainer');
+        var lastChild = container.lastElementChild;
+        if (lastChild) {
+            specialCarPairCount--;
+            container.removeChild(lastChild);
+        }
+
+
+    })
 
 
 
@@ -983,7 +1132,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 })
-
 
 
 

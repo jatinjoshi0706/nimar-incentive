@@ -11,29 +11,29 @@
   &nbsp;&nbsp;&nbsp;
   <h1 style="text-align: center;color: #1F1A17;">Maruti</h1>
   <h1 style="text-align: center;color: #1F1A17;"> Incentive Calculator </h1>
-  
-  
+
+
   <div class="errormsg" id="errormsgSales">
     <h3 class="errorHead" id="errorHeadSales"></h3>
     <ul class="ErrorList" id="salesError"></ul>
   </div>
-  
+
   <div class="errormsg" id="errormsgMGA">
     <h3 class="errorHead" id="errorHeadMGA"></h3>
     <ul class="ErrorList" id="MGAError"></ul>
   </div>
-  
-  
+
+
   <div class="errormsg" id="errormsgStatus">
     <h3 class="errorHead" id="errorHeadStatus"></h3>
     <ul class="ErrorList" id="StatusError"></ul>
   </div>
-  
+
   <div class="errormsg" id="errormsgCDI">
     <h3 class="errorHead" id="errorHeadCDI"></h3>
     <ul class="ErrorList" id="CDIError"></ul>
   </div>
-  
+
   <div class="container" style="text-align: center;">
 
     <div class="inputFile-section">
@@ -97,8 +97,13 @@
           <option value="perCarIncentive">Per Car Incentive</option>
           <option value="perModelIncentive">Per Model Incentive</option>
         </select>
+
+
         <div id="perCarIncentiveSection">
           <h2 style="color: #1F1A17;">Per Car Incentive</h2>
+          <button type="button" id="addPairButton">Add Pair</button>
+          <button type="button" id="removePairButton">Remove Pair</button>
+
           <div id="pairs-container" style="color: #1F1A17; margin-top: 20px;">
             <div class="pair-container">
               <label for="cars" style="color: #1F1A17;">Number of Cars:</label>
@@ -106,7 +111,6 @@
               <label for="incentive" style="color: #1F1A17;">Incentive:</label>
               <input type="number" name="incentive" step="0.01">
             </div>
-            <button type="button" id="addPairButton">Add Pair</button>
           </div>
         </div>
 
@@ -132,13 +136,16 @@
             </div>
           </div>
           <button type="button" id="addPerModelPairButton">Add Another Model Incentive Pair</button>
+          <button type="button" id="removePerModelPairButton">Remove Model Pair</button>
         </div>
       </div>
 
       <!-- Special Car Incentive -->
-
+      
       <div id="specialCarPairContainer">
         <h2 style="color: #1F1A17;">Special Car Incentive</h2>
+        <button type="button" id="addSpecialCarPairButton">Add Special Car Incentive Pair</button>
+        <button type="button" id="removeSpecialCarPairButton">Remove Special Car Incentive Pair</button>
         <div class="specialCarPairContainer">
           <label for="SCcarModel1">Car Model:</label>
           <select id="SCcarModel1">
@@ -156,34 +163,37 @@
           <label for="SCincentive1">Incentive:</label>
           <input type="number" id="SCincentive1" placeholder="Enter incentive amount">
         </div>
-        <button type="button" id="addSpecialCarPairButton">Add Special Car Incentive Pair</button>
+
       </div>
 
 
 
 
-      <div id="Exchange-pairs-container" style="color: #1F1A17; margin-top: 20px;">
+
+      <div id="ExchangePairSection" style="color: #1F1A17; margin-top: 20px;">
         <h2 style="color: #1F1A17;">Exchange Status Incentive</h2>
-        <div class="Exchange-pair-container">
-          <label for="exchange" style="color: #1F1A17;">Exchange No:</label>
-          <input type="number" name="exchange">
-          <label for="incentive" style="color: #1F1A17;">Incentive:</label>
-          <input type="number" name="incentive" step="0.01">
-        </div>
+
         <button type="button" id="addExchangePairButton">Add Exchange Pair</button>
+        <button type="button" id="removeLastExchangePairButton">Remove Last Pair</button>
+
+        <div id="Exchange-pairs-container">
+
+        </div>
       </div>
 
 
 
-      <div id="Complaint-pairs-container" style="color: #1F1A17; margin-top: 20px;">
+
+
+
+      <div id="ComplaintSection" style="color: #1F1A17; margin-top: 20px;">
         <h2 style="color: #1F1A17;">Complaint Status Deduction</h2>
-        <div class="Complaint-pair-container">
-          <label for="complaint" style="color: #1F1A17;">Complaint No:</label>
-          <input type="number" name="complaint">
-          <label for="incentive" style="color: #1F1A17;">Incentive:</label>
-          <input type="number" name="incentive" step="0.01">
-        </div>
+
         <button type="button" id="addComplaintPairButton">Add Complaint Pair</button>
+        <button type="button" id="removeLastComplaintPairButton">Remove Last Pair</button>
+
+        <div id="Complaint-pairs-container">
+        </div>
       </div>
 
 
@@ -223,6 +233,9 @@
           <option value="range">Range</option>
         </select>
         <button type="button" id="addInputButton">Add Input</button>
+        <button type="button" id="removeCDIInput">Remove CDI Input</button>
+
+
         <div id="cdiInputs"></div>
       </div>
 
@@ -231,6 +244,8 @@
       <div class="discountIncentive-section">
         <h2 style="color: #1F1A17;">Discount Incentive</h2>
         <button type="button" id="addDiscountInputButton">Add Discount Slab Input</button>
+        <button type="button" id="removeDiscountInput">Remove Discount Input</button>
+
         <div id="DiscountInputsContainer"></div>
       </div>
 
@@ -239,6 +254,8 @@
         <h2 style="color: #1F1A17;">MGA Incentive</h2>
         <br>
         <button type="button" id="addMGAInput">Add MGA Input</button>
+        <button type="button" id="removeMGAInput">Remove MGA Input</button>
+
         <div id="MGAinputsContainer">
         </div>
       </div>
@@ -254,6 +271,8 @@
           <option value="range">Range</option>
         </select>
         <button type="button" id="addEWInputButton">Add EW Input</button>
+        <button type="button" id="removeEWInputButton">Remove EW Input</button>
+
         <!-- Container for dynamically added inputs -->
         <div id="EWinputsContainer"></div>
       </div>
@@ -268,6 +287,8 @@
         </select>
 
         <button type="button" id="addMSRInputButton">Add MSR Input</button>
+        <button type="button" id="removeMSRInputButton">Remove MSR Input</button>
+
 
         <!-- Container for dynamically added inputs -->
         <div id="MSRinputsContainer"></div>
@@ -284,6 +305,8 @@
         </select>
 
         <button type="button" id="addCCPInputButton">Add CCP Input</button>
+        <button type="button" id="removeCCPInputButton">Remove CCP Input</button>
+
 
         <!-- Container for dynamically added inputs -->
         <div id="CCPinputsContainer"></div>
@@ -300,6 +323,8 @@
         </select>
 
         <button type="button" id="addMSSFInputButton">Add MSSF Input</button>
+        <button type="button" id="removeMSSFInputButton">Remove MSSF Input</button>
+
 
         <!-- Container for dynamically added inputs  -->
         <div id="MSSFinputsContainer"></div>

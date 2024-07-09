@@ -29,13 +29,13 @@ module.exports =  (qualifiedRM, formData) => {
       
         for (let i = 0; i < formData["Extended Warranty"].length; i++) {
             const condition = formData["Extended Warranty"][i];
-            if (condition.type === 'less' && userEW < condition.value) {
+            if (condition.type === 'less' && userEW <= condition.value) {
               element["EW Incentive"] = noOfCarSoldEW*condition.incentive;
               break;
-            } else if (condition.type === 'greater' && userEW > condition.value) {
+            } else if (condition.type === 'greater' && userEW >= condition.value) {
               element["EW Incentive"] = noOfCarSoldEW*condition.incentive;
               break;
-            } else if (condition.type === 'range' && userEW >= condition.min && userEW <= condition.max) {
+            } else if (condition.type === 'range' && userEW >= condition.min && userEW < condition.max) {
               element["EW Incentive"] = noOfCarSoldEW*condition.incentive;
               break;
             }

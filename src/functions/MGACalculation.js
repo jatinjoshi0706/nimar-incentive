@@ -22,7 +22,7 @@ module.exports = (qualifiedRM, MGAdata, formData) => {
                         break;
                     }
                 } else {
-                    if (mgaValue >= range.min && mgaValue < range.max) {
+                    if (mgaValue >= range.min && mgaValue <= range.max) {
                         MGAIncentive = parseFloat(range.incentive);
                         break;
                     }
