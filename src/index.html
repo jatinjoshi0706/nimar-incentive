@@ -48,6 +48,10 @@
       </div>
     </div>
     <form id="myForm">
+
+
+
+
       <!-- check qualifing Condition -->
       <div class="qcContainer">
         <h2 style="color: #1F1A17;">Qualifying Condition</h2>
@@ -71,16 +75,67 @@
             <label for="numCars" style="color: #1F1A17;">Number of Cars:</label>
             <input type="number" id="numCars" name="numCars">
           </div>
+
+
+          <!-- <div class="SuperDiscount-input-container">
+            <label for="zeroDiscountCheck">Max Possible Discount on Vehicle:</label>
+            <input type="checkbox" id="zeroDiscountCheck" name="superCarCheck" value="zeroDiscountOnVehicle"  onchange="document.getElementById('DiscountValue').classList.toggle('hidden', !this.checked)">
+            <input type="number" id="DiscountValue" name="DiscountValue" placeholder="Enter Discount Value" class="hidden">
+          </div>
+           -->
           <div style=" display: flex;  justify-content: space-evenly;">
             <label for="autocard" style="color: #1F1A17;">AutoCard:</label>
             <input type="checkbox" id="autocard" name="autocard" value="yes">
+            <div id="autocardPercent-container">
+              <label for="autocardPercent" style="color: #1F1A17;">AutoCard Percent:</label>
+              <input type="number" id="autocardPercent" name="autocardPercent" value=100>
+            </div>
           </div>
           <div style=" display: flex;  justify-content: space-evenly;">
             <label for="ew" style="color: #1F1A17;">EW:</label>
             <input type="checkbox" id="ew" name="ew" value="yes">
+            <div class="ewdPercent-container">
+              <label for="ewdPercent" style="color: #1F1A17;">EW Percent:</label>
+              <input type="number" id="ewdPercent" name="ewdPercent" value=100>
+            </div>
+          </div>
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="CCP" style="color: #1F1A17;">CCP: </label>
+            <input type="checkbox" id="CCP" name="CCP" value="yes">
+            <div class="CCPPercent-container">
+              <label for="CCPPercent" style="color: #1F1A17;">CCP Percent:</label>
+              <input type="number" id="CCPPercent" name="CCPPercent" value=100>
+            </div>
+          </div>
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="MSSF" style="color: #1F1A17;">MSSF:</label>
+            <input type="checkbox" id="MSSF" name="MSSF" value="yes">
+            <div class="MSSFPercent-container">
+              <label for="MSSFPercent" style="color: #1F1A17;">MSSF Percent:</label>
+              <input type="number" id="MSSFPercent" name="MSSFPercent" value=100>
+            </div>
+          </div>
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="MGA" style="color: #1F1A17;">MGA:</label>
+            <input type="checkbox" id="MGA" name="MGA" value="yes">
+            <div class="MGAAmount-container">
+              <label for="MGAAmount" style="color: #1F1A17;">MGA Amount:</label>
+              <input type="number" id="MGAAmount" name="MGAAmount" placeholder="Enter MGA Amount">
+            </div>
+          </div>
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="Discount" style="color: #1F1A17;">Discount Slab:</label>
+            <input type="checkbox" id="Discount" name="Discount" value="yes">
+            <div class="DiscountAmount-container">
+              <label for="DiscountAmount" style="color: #1F1A17;">Discount Amount:</label>
+              <input type="number" id="DiscountAmount" name="DiscountAmount" placeholder="Enter Avg.Discount/DSE">
+            </div>
           </div>
         </div>
       </div>
+
+
+
 
       <div class="newDSEContainer">
         <h2 class="newDSE-section" style="color: #1F1A17;">New DSE Percar Incentive :</h2>
@@ -141,7 +196,7 @@
       </div>
 
       <!-- Special Car Incentive -->
-      
+
       <div id="specialCarPairContainer">
         <h2 style="color: #1F1A17;">Special Car Incentive</h2>
         <button type="button" id="addSpecialCarPairButton">Add Special Car Incentive Pair</button>
