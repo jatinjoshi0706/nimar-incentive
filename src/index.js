@@ -245,6 +245,8 @@ const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
         let MSSFFlag = true;
         let MGAFlag = true;
         let DiscountFlag = true;
+        let ExchangeFlag = true;
+        let ComplainFlag = true;
 
         //checking autocard checked 
         if (formData.QC.autoCard === "yes") {
@@ -291,7 +293,7 @@ const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
         if (formData.QC.MGACheck === "yes") {
           //if % is greater or equal then qualify 
           let MGAAmountForQC = 0;
-          const result = searchByID(MGAdata,  DSE_NoOfSoldCarExcelDataArr[0]['DSE ID']);
+          const result = searchByID(MGAdata, DSE_NoOfSoldCarExcelDataArr[0]['DSE ID']);
           if (result) {
             MGAAmountForQC = result["MGA/VEH"];
             if (MGAAmountForQC >= formData.QC.MGAAmount)
@@ -299,23 +301,42 @@ const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
             else {
               MGAFlag = false;
             }
-          }else{
+          } else {
             MGAFlag = false;
           }
         }
-        
-        
+
+
         //checking Discount checked 
         if (formData.QC.DiscountCheck === "yes") {
           //if % is greater or equal then qualify 
-          let AvgDiscount = Discount/DiscountCount;
+          let AvgDiscount = Discount / DiscountCount;
           if (AvgDiscount <= formData.QC.DiscountAmount)
             DiscountFlag = true;
-          else 
+          else
             DiscountFlag = false;
         }
 
-        
+        //checking Exchange checked 
+        if (formData.QC.ExchangeCheck === "yes") {
+          //if % is greater or equal then qualify 
+
+          if (ExchangeStatusCheck >= formData.QC.ExchangeCount)
+            ExchangeFlag = true;
+          else
+            ExchangeFlag = false;
+        }
+
+        //checking Complaint checked 
+        if (formData.QC.ComplaintCheck === "yes") {
+          //if % is greater or equal then qualify 
+          if (ComplaintCheck <= formData.QC.ComplaintCount)
+            ComplainFlag = true;
+          else
+            ComplainFlag = false;
+        }
+
+
         // if (formData.QC.EW === "yes" && (EWCheck >= DSE_NoOfSoldCarExcelDataArr.length))
         //   EWFlag = true;
         // else {
@@ -324,7 +345,7 @@ const checkQualifingCondition = (formData, employeeStatusDataSheet) => {
         // }
 
         // check final qulification
-        if (EWFlag && autoCardFlag && CCPFlag && MSSFFlag && MGAFlag && DiscountFlag) {
+        if (EWFlag && autoCardFlag && CCPFlag && MSSFFlag && MGAFlag && DiscountFlag && ExchangeFlag && ComplainFlag) {
           // console.log("sdfghgfcvhjkjhv  :  ", obj);
           obj = {
             ...obj,

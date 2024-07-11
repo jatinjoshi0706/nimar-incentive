@@ -707,7 +707,11 @@ document.addEventListener("DOMContentLoaded", function () {
             MGACheck: MGA.checked ? 'yes' : 'no',
             MGAAmount: formData.get('MGAAmount'),
             DiscountCheck: Discount.checked ? 'yes' : 'no',
-            DiscountAmount: formData.get('DiscountAmount')
+            DiscountAmount: formData.get('DiscountAmount'),
+            ExchangeCheck: Exchange.checked ? 'yes' : 'no',
+            ExchangeCount: formData.get('ExchangeCount'),
+            ComplaintCheck: Complaint.checked ? 'yes' : 'no',
+            ComplaintCount: formData.get('ComplaintCount'),
         };
         const superCar = {
             superCarCriteria: formData.getAll('superCarCheck'),

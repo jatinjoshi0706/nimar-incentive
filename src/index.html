@@ -86,7 +86,7 @@
           <div style=" display: flex;  justify-content: space-evenly;">
             <label for="autocard" style="color: #1F1A17;">AutoCard:</label>
             <input type="checkbox" id="autocard" name="autocard" value="yes">
-            <div id="autocardPercent-container">
+            <div class="autocardPercent-container">
               <label for="autocardPercent" style="color: #1F1A17;">AutoCard Percent:</label>
               <input type="number" id="autocardPercent" name="autocardPercent" value=100>
             </div>
@@ -120,7 +120,7 @@
             <input type="checkbox" id="MGA" name="MGA" value="yes">
             <div class="MGAAmount-container">
               <label for="MGAAmount" style="color: #1F1A17;">MGA Amount:</label>
-              <input type="number" id="MGAAmount" name="MGAAmount" placeholder="Enter MGA Amount">
+              <input type="number" id="MGAAmount" name="MGAAmount" placeholder="Enter MGA/Vehicle Amount">
             </div>
           </div>
           <div style=" display: flex;  justify-content: space-evenly;">
@@ -129,6 +129,24 @@
             <div class="DiscountAmount-container">
               <label for="DiscountAmount" style="color: #1F1A17;">Discount Amount:</label>
               <input type="number" id="DiscountAmount" name="DiscountAmount" placeholder="Enter Avg.Discount/DSE">
+            </div>
+          </div>
+
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="Exchange" style="color: #1F1A17;">Exchange :</label>
+            <input type="checkbox" id="Exchange" name="Exchange" value="yes">
+            <div class="ExchangeCount-container">
+              <label for="ExchangeCount" style="color: #1F1A17;">Exchange Count:</label>
+              <input type="number" id="ExchangeCount" name="ExchangeCount" placeholder="Enter MIN.Exchange">
+            </div>
+          </div>
+
+          <div style=" display: flex;  justify-content: space-evenly;">
+            <label for="Complaint" style="color: #1F1A17;">Complaint :</label>
+            <input type="checkbox" id="Complaint" name="Complaint" value="yes">
+            <div class="ComplaintCount-container">
+              <label for="ComplaintCount" style="color: #1F1A17;">Complaint Count:</label>
+              <input type="number" id="ComplaintCount" name="ComplaintCount" placeholder="Enter MAX.complain ">
             </div>
           </div>
         </div>
