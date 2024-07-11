@@ -5,6 +5,9 @@ module.exports =  (qualifiedRM, formData) => {
     qualifiedRM.forEach(element => {
 
         element["Complaint Deduction"] = 0;
+
+
+        if(formData.ComplaintInputs.length !== 0){
         let userComplaintNumber = element["Complaints"];
 
 
@@ -19,7 +22,7 @@ module.exports =  (qualifiedRM, formData) => {
         }
 
 
-        
+    }
     
     
     });

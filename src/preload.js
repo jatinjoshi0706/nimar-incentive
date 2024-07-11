@@ -697,7 +697,17 @@ document.addEventListener("DOMContentLoaded", function () {
             // autoCard: formData.get('autocard'),
             // EW: formData.get('ew')
             autoCard: AC.checked ? 'yes' : 'no',
-            EW: eW.checked ? 'yes' : 'no'
+            autocardPercent: formData.get('autocardPercent'),
+            EW: eW.checked ? 'yes' : 'no',
+            ewdPercent: formData.get('ewdPercent'),
+            CCPCheck: CCP.checked ? 'yes' : 'no',
+            CCPPercent: formData.get('CCPPercent'),
+            MSSFCheck: MSSF.checked ? 'yes' : 'no',
+            MSSFPercent: formData.get('MSSFPercent'),
+            MGACheck: MGA.checked ? 'yes' : 'no',
+            MGAAmount: formData.get('MGAAmount'),
+            DiscountCheck: Discount.checked ? 'yes' : 'no',
+            DiscountAmount: formData.get('DiscountAmount')
         };
         const superCar = {
             superCarCriteria: formData.getAll('superCarCheck'),
@@ -944,8 +954,8 @@ document.addEventListener("DOMContentLoaded", function () {
         finalObj["SpecialCarIncentive"] = specialCarPairs;
         finalObj["CCP"] = CCPInputs;
         finalObj["MSSF"] = MSSFInputs;
-        // console.log('FinalObj');
-        // console.log(finalObj);
+        console.log('FinalObj');
+        console.log(finalObj);
 
         ipcRenderer.send('form-submit', finalObj);
 
